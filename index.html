@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%- title %></title>
+    <title>Index</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <link rel="stylesheet" href="./assets/style/bootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,7 +17,28 @@
     <div class="container" id="app">
      
   
-      <%- contents %>
+      
+
+<div class="row">
+  <div class="mx-auto col-4">
+      <div class="card my-3">
+          <div class="card-body">
+              <div class="form-group py-2">
+                  <label for="account">帳號</label>
+                  <input type="mail" id="account" class="form-control" placeholder="請輸入帳號" v-model="user.username">
+              </div>
+              <div class="form-group py-2">
+                  <label for="password">密碼</label>
+                  <input type="password" id="password" class="form-control"placeholder="請輸入密碼" v-model="user.password">
+              </div>
+              
+          </div>
+          <button class="btn btn-primary align-self-end me-3 mb-3" type="button" @click="login">登入</button>
+      </div>
+  </div>
+</div>
+
+
   
       <footer class="footer">
       
