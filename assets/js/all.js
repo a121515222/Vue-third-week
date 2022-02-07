@@ -105,7 +105,7 @@ var app = Vue.createApp({
       //console.log(location.pathname)
       //判斷目前頁面是否為"/Vue first week-2.html"可以先用console.log(location.pathname)確認
       //傳到git hub上面時要去看git hub上面的location.pathname，在網頁的console 輸入location.pathname
-      if (location.pathname === '/Admin%20produlist.html') {
+      if (location.pathname === '/Vue-third-week/Admin%20produlist.html') {
         //取得所存在cookie的token
         this.sendToken();
         axios.get("".concat(this.apiInfo.url, "/api/").concat(this.apiInfo.path, "/admin/products")).then(function (res) {
@@ -115,7 +115,7 @@ var app = Vue.createApp({
           alert("".concat(err.response.data.message, ",\u81EA\u52D5\u8F49\u8DF3\u81F3\u767B\u5165\u9801"));
 
           if (err.response.data.message === '驗證錯誤, 請重新登入') {
-            location.href = "./index.html";
+            location.href = "./Vue-third-week/index.html";
           }
         });
       }
