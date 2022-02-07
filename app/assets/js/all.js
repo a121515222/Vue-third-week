@@ -41,7 +41,6 @@ const app = Vue.createApp({
           });
         });
         this.postId=data.id
-        console.log(this.products)
       } else {
         return
        };
@@ -68,13 +67,10 @@ const app = Vue.createApp({
       } else {
         this.products[index].is_enabled = 0;
       }
-      //console.log(this.products[index].is_enabled)
     },
     login() {
-      console.log(this.user);
       if (this.user.username !== '' && this.user.password !== '') {
         axios.post(`${this.apiInfo.url}/admin/signin`, this.user).then((res) => {
-          //console.log(res.data)
           //把token存到cookie
           document.cookie = `myHextoken1=${res.data.token}; expires=${new Date(res.data.expired)}`;
           //轉跳頁面到產品資料頁
@@ -93,7 +89,6 @@ const app = Vue.createApp({
     },
 
     getProduct() {
-      //console.log(location.pathname)
       //判斷目前頁面是否為"/Vue first week-2.html"可以先用console.log(location.pathname)確認
       //傳到git hub上面時要去看git hub上面的location.pathname，在網頁的console 輸入location.pathname
       if (location.pathname === '/Vue-third-week/Admin%20produlist.html') {
@@ -101,8 +96,6 @@ const app = Vue.createApp({
         this.sendToken();
         axios.get(`${this.apiInfo.url}/api/${this.apiInfo.path}/admin/products`).then((res) => {
           this.products = res.data.products;
-          //console.log(this.products)
-          //console.log(res.data)
         }).catch((err) => {
           alert(`${err.response.data.message},自動轉跳至登入頁`)
           if(err.response.data.message==='驗證錯誤, 請重新登入'){
@@ -177,7 +170,6 @@ const app = Vue.createApp({
           this.resetModal();
         }).catch((err) => {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       }
       //編輯商品
@@ -194,12 +186,10 @@ const app = Vue.createApp({
           
         }).catch((err) => {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       }
     },
     deleteProduct(){
-      console.log(this.postId)
       const confrim = prompt("請輸入delete")
       if(confrim==='delete'){
         axios.delete(`${this.apiInfo.url}/api/${this.apiInfo.path}/admin/product/${this.postId}`).then((res) => {
@@ -207,7 +197,6 @@ const app = Vue.createApp({
           this.getProduct();
         }).catch((err) => {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       }else{
         alert('輸入錯誤，不進行刪除')
