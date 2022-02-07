@@ -48,7 +48,6 @@ var app = Vue.createApp({
           });
         });
         this.postId = data.id;
-        console.log(this.products);
       } else {
         return;
       }
@@ -74,15 +73,11 @@ var app = Vue.createApp({
         this.products[index].is_enabled = 1;
       } else {
         this.products[index].is_enabled = 0;
-      } //console.log(this.products[index].is_enabled)
-
+      }
     },
     login: function login() {
-      console.log(this.user);
-
       if (this.user.username !== '' && this.user.password !== '') {
         axios.post("".concat(this.apiInfo.url, "/admin/signin"), this.user).then(function (res) {
-          //console.log(res.data)
           //把token存到cookie
           document.cookie = "myHextoken1=".concat(res.data.token, "; expires=").concat(new Date(res.data.expired)); //轉跳頁面到產品資料頁
           //或是用window.location="Vue first week-2.html"
@@ -102,15 +97,13 @@ var app = Vue.createApp({
     getProduct: function getProduct() {
       var _this2 = this;
 
-      //console.log(location.pathname)
       //判斷目前頁面是否為"/Vue first week-2.html"可以先用console.log(location.pathname)確認
       //傳到git hub上面時要去看git hub上面的location.pathname，在網頁的console 輸入location.pathname
       if (location.pathname === '/Vue-third-week/Admin%20produlist.html') {
         //取得所存在cookie的token
         this.sendToken();
         axios.get("".concat(this.apiInfo.url, "/api/").concat(this.apiInfo.path, "/admin/products")).then(function (res) {
-          _this2.products = res.data.products; //console.log(this.products)
-          //console.log(res.data)
+          _this2.products = res.data.products;
         })["catch"](function (err) {
           alert("".concat(err.response.data.message, ",\u81EA\u52D5\u8F49\u8DF3\u81F3\u767B\u5165\u9801"));
 
@@ -203,7 +196,6 @@ var app = Vue.createApp({
           _this3.resetModal();
         })["catch"](function (err) {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       } //編輯商品
       else if (this.isNew === false) {
@@ -221,14 +213,12 @@ var app = Vue.createApp({
           _this3.postId = "";
         })["catch"](function (err) {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       }
     },
     deleteProduct: function deleteProduct() {
       var _this4 = this;
 
-      console.log(this.postId);
       var confrim = prompt("請輸入delete");
 
       if (confrim === 'delete') {
@@ -238,7 +228,6 @@ var app = Vue.createApp({
           _this4.getProduct();
         })["catch"](function (err) {
           alert(err.response.data.message);
-          console.log(err.response);
         });
       } else {
         alert('輸入錯誤，不進行刪除');
