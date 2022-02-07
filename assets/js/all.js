@@ -84,7 +84,7 @@ var app = Vue.createApp({
         axios.post("".concat(this.apiInfo.url, "/admin/signin"), this.user).then(function (res) {
           //console.log(res.data)
           //把token存到cookie
-          document.cookie = "myHextoken=".concat(res.data.token, "; expires=").concat(new Date(res.data.expired)); //轉跳頁面到產品資料頁
+          document.cookie = "myHextoken1=".concat(res.data.token, "; expires=").concat(new Date(res.data.expired)); //轉跳頁面到產品資料頁
           //或是用window.location="Vue first week-2.html"
 
           location.href = "./Admin produlist.html";
@@ -96,7 +96,7 @@ var app = Vue.createApp({
       }
     },
     sendToken: function sendToken() {
-      var myToken = document.cookie.replace(/(?:(?:^|.*;\s*)myHextoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      var myToken = document.cookie.replace(/(?:(?:^|.*;\s*)myHextoken1\s*\=\s*([^;]*).*$)|^.*$/, "$1");
       axios.defaults.headers.common['Authorization'] = myToken;
     },
     getProduct: function getProduct() {
